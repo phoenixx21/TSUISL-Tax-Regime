@@ -100,3 +100,13 @@ signupForm.addEventListener("submit", async (event) => {
       }
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Prevent back navigation after logout
+    history.pushState(null, null, location.href);
+    window.onpopstate = () => {
+        history.pushState(null, null, location.href); // Push the current state again
+        alert("You've been logged out!");
+    };
+});
+

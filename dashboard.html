@@ -205,6 +205,19 @@
 
 
   </style>
+
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Prevent back navigation after logout
+            history.pushState(null, null, location.href);
+            window.onpopstate = () => {
+                history.pushState(null, null, location.href); // Push the current state again
+                alert("You've been logged out!");
+            };
+        });
+    </script>
+  
+
 </head>
 <body>
 
@@ -222,7 +235,7 @@
   <div id="sidebar" class="sidebar">
     <ul>
       <li><a href="dashboard.html">Home</a></li>
-      <li>Change Password</li>
+      <li><a href="change_password.html">Change Password</a></li>
       <li>Admin</li>
       <li><a href="dashboard.html">Tax Regime</a></li>
       <li>My Tax Regime</li>
@@ -299,10 +312,13 @@
     });
 
     document.getElementById("logout").addEventListener("click", () => {
-        // Clear localStorage and redirect to login
-        localStorage.clear();
-        window.location.href = "index.html";
-    });
+    // Clear localStorage and redirect to login
+    localStorage.clear(); // Clear stored session data
+    sessionStorage.clear(); // Optionally clear sessionStorage
+    alert("You've been logged out!");
+    window.location.href = "index.html";
+});
+
 
     // Sidebar toggle logic
   const sidebar = document.getElementById("sidebar");

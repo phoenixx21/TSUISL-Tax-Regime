@@ -61,6 +61,37 @@ app.post("/login", (req, res) => {
     });
 });
 
+// Change Password API
+
+app.post("/change-password", (req, res) => {
+  const { userId, currentPassword, newPassword } = req.body;
+
+  // Check if userId and currentPassword are correct
+  const verifyQuery = "SELECT * FROM users WHERE userId = ? AND password = ?";
+  db.query(verifyQuery, [userId, currentPassword], (err, results) => {
+    if (err) {
+      console.error("Database error:", err.message);
+      return res.status(500).send("Server error.");
+    }
+
+    if (results.length === 0) {
+      return res.status(401).send("Invalid user ID or current password.");
+    }
+
+    // Update the password
+    const updateQuery = "UPDATE users SET password = ? WHERE userId = ?";
+    db.query(updateQuery, [newPassword, userId], (err, results) => {
+      if (err) {
+        console.error("Database error:", err.message);
+        return res.status(500).send("Error updating password.");
+      }
+
+      res.status(200).send("Password updated successfully.");
+    });
+  });
+});
+
+
 
 // Start server
 app.listen(3000, () => {

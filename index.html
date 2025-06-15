@@ -19,12 +19,15 @@
             <form id="loginForm">
                 <label for="userId">UserID</label>
                 <input type="text" id="userId" name="userId" placeholder="Enter your UserID" required>
+
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
                 <div>
                     <input type="checkbox" id="keepLoggedIn" name="keepLoggedIn">
                     <label for="keepLoggedIn">Keep me logged in</label>
                 </div>
+
                 <button type="submit">Log In</button>
             </form>
             <div class="links">
@@ -37,17 +40,26 @@
     <div id="signup" class="container hidden">
         <div class="form-container">
             <h2>New User</h2>
+            <p>Password is required to have a minimum of 6 characters.</p>
             <form id="signupForm">
-                <label for="signupUserId">User ID</label>
-                <input type="text" id="signupUserId" name="signupUserId" required>
+                <label for="signupUserId">User ID (Personnel No.)</label>
+                <input type="text" id="signupUserId" name="signupUserId" placeholder="Enter your User ID" required>
+
                 <label for="userName">User Name</label>
-                <input type="text" id="userName" name="userName" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="text" id="userName" name="userName" placeholder="Enter your Name" required>
+
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+
+                <label for="contactNo">Contact No.</label>
+                <input type="text" id="contactNo" name="contactNo" placeholder="Enter your Contact No." required>
+
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" name="signupPassword" placeholder="Enter your Password" required>
+
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your Password" required>
+
                 <button type="submit">Create User</button>
             </form>
         </div>
@@ -56,97 +68,19 @@
     <div id="forgot-password" class="container hidden">
         <div class="form-container">
             <h2>Forgot Password</h2>
+            <p>Please enter your registered Email or Contact No. to reset your password.</p>
             <form id="forgotPasswordForm">
-                <label for="fpEmail">Email</label>
-                <input type="email" id="fpEmail" name="fpEmail">
-                <label for="fpContactNo">Contact Number</label>
-                <input type="text" id="fpContactNo" name="fpContactNo">
+                <label for="fpEmail">E-mail</label>
+                <input type="email" id="fpEmail" name="fpEmail" placeholder="Enter your Email">
+
+                <label for="fpContactNo">Contact No.</label>
+                <input type="text" id="fpContactNo" name="fpContactNo" placeholder="Enter your Contact No.">
+
                 <button type="submit">Reset Password</button>
             </form>
         </div>
     </div>
 
-    <div id="dashboard" class="container hidden">
-        <div class="topbar">
-            <div class="topbar-left">
-                <img src="file.png" alt="Logo">
-                <div class="topbar-title">Tax Regime</div>
-            </div>
-            <div class="user-info">
-                Welcome <span id="username">User</span> | <a href="#login">Log Out</a>
-            </div>
-        </div>
-        <!-- Add dashboard content here -->
-
-
-
-  <div class="topbar">
-    <div class="topbar-left">
-      <img src="file.png" alt="Logo">
-      <div class="topbar-title">Tax Regime</div>
-    </div>
-    <div class="user-info">
-      Welcome <span id="username">User</span> | <a href="#">Log Out</a>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="notice-bar">
-      Tax Regime Switch option facility from default (New Tax Regime) to Old Tax Regime for Financial Year 2024–25
-    </div>
-
-    <div class="section-header">Record Details</div>
-
-    <form id="taxForm">
-      <div class="form-group">
-        <label for="pno">Pno:</label>
-        <input type="text" id="pno" name="pno" required>
-      </div>
-
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-
-      <div class="form-group">
-        <label for="level">Level:</label>
-        <input type="text" id="level" name="level" required>
-      </div>
-
-      <div class="document-section">
-        <label>Documents:</label>
-        <button type="button" onclick="openPDF('circular.pdf')">Circular</button>
-        <button type="button" onclick="openPDF('calculator.pdf')">Tax Calculator</button>
-      </div>
-
-      <div class="info-line">
-        You are currently under Income Tax default Option–I (New tax Regime).
-      </div>
-
-      <div class="switch-line">
-        Do you want to switch from option-I(New Tax Regime) to option-II(Old Tax Regime)?
-      </div>
-
-      <div class="form-group">
-        <label for="switch">Your Choice:</label>
-        <select id="switch" name="switch" required>
-          <option value="">--Select--</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      </div>
-
-      <div class="checkboxes">
-        <label><input type="checkbox" id="confirm1"> I have read the enclosed documents attached carefully before exercising the switching option.</label>
-        <label><input type="checkbox" id="confirm2"> I can switch only once in a Financial Year.</label>
-      </div>
-
-      <button type="submit" class="submit-btn" id="submitBtn" disabled>Submit</button>
-    </form>
-  </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
- 

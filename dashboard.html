@@ -184,6 +184,18 @@
     background-color: #34495e;
   }
 
+  .sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: block; /* Ensures the entire list item is clickable */
+    width: 100%; /* Make the link span the entire width of the sidebar */
+    padding: 15px 20px; /* Matches the padding of the list item */
+  }
+
+  .sidebar ul li a:hover {
+    background-color: #34495e; /* Matches the hover effect */
+  }
+
   /* Adjusting the topbar icon for interactivity */
   #sidebarToggle {
     cursor: pointer;
@@ -205,14 +217,14 @@
       Welcome <span id="userName">User</span> | <a href="#" id="logout">Log Out</a>
     </div>
   </div>
-  
+
   <!-- Sidebar -->
   <div id="sidebar" class="sidebar">
     <ul>
-      <li>Home</li>
+      <li><a href="dashboard.html">Home</a></li>
       <li>Change Password</li>
       <li>Admin</li>
-      <li>Tax Regime</li>
+      <li><a href="dashboard.html">Tax Regime</a></li>
       <li>My Tax Regime</li>
       <li>Report</li>
     </ul>
@@ -293,12 +305,22 @@
     });
 
     // Sidebar toggle logic
-    const sidebar = document.getElementById("sidebar");
-    const toggleButton = document.getElementById("sidebarToggle");
+  const sidebar = document.getElementById("sidebar");
+  const toggleButton = document.getElementById("sidebarToggle");
 
-    toggleButton.addEventListener("click", () => {
-      sidebar.classList.toggle("visible");
-    });
+  // Toggle sidebar on clicking the toggle button
+  toggleButton.addEventListener("click", (event) => {
+    event.stopPropagation(); // Prevent triggering the document click event
+    sidebar.classList.toggle("visible");
+  });
+
+  // Close sidebar when clicking outside of it
+  document.addEventListener("click", (event) => {
+    // Check if the sidebar is visible and the click is outside the sidebar
+    if (sidebar.classList.contains("visible") && !sidebar.contains(event.target) && event.target !== toggleButton) {
+      sidebar.classList.remove("visible");
+    }
+  });
 
 
     const checkbox1 = document.getElementById('confirm1');

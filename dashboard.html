@@ -302,19 +302,23 @@
 
     
     document.addEventListener("DOMContentLoaded", () => {
-        // Retrieve the username from localStorage
-        const userName = localStorage.getItem("userName");
+    // Check for stored username
+    const username = localStorage.getItem("username") || sessionStorage.getItem("username");
 
-        // Update the #username span
-        if (userName) {
-            document.getElementById("userName").textContent = userName;
-        }
-    });
+    if (!username) {
+        // If no user is logged in, redirect to the login page
+        alert("Please log in to access the dashboard.");
+        window.location.href = "index.html";
+    } else {
+        // Display the username on the dashboard
+        document.getElementById("userName").textContent = username;
+    }
+});
+
 
     document.getElementById("logout").addEventListener("click", () => {
-    // Clear localStorage and redirect to login
-    localStorage.clear(); // Clear stored session data
-    sessionStorage.clear(); // Optionally clear sessionStorage
+    localStorage.clear(); // Clear persistent data
+    sessionStorage.clear(); // Clear session-only data
     alert("You've been logged out!");
     window.location.href = "index.html";
 });

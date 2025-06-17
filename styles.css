@@ -89,3 +89,13 @@ button:hover {
 .links a:hover {
   text-decoration: underline;
 }
+
+.keep-logged-in {
+      display: flex;
+      align-items: flex-start; /* Align checkbox and label vertically */
+      gap: 5px; /* Optional: Add spacing between the checkbox and label */
+  }
+
+  .keep-logged-in input[type="checkbox"] {
+      margin: 0; /* Remove default margin */
+  }

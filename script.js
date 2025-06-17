@@ -20,11 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Login form validation (simplified for demonstration)
-loginForm.addEventListener("submit", async (event) => {
+document.getElementById("loginForm").addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const userId = document.getElementById("userId").value;
     const password = document.getElementById("password").value;
+    const keepLoggedIn = document.getElementById("keepLoggedIn").checked;
 
     try {
         const response = await fetch("http://localhost:3000/login", {
@@ -34,22 +35,28 @@ loginForm.addEventListener("submit", async (event) => {
         });
 
         if (response.ok) {
-            const data = await response.json(); // Assuming your backend sends back user info
-            alert("Logged in successfully!");
+            const data = await response.json(); // Backend returns user info
+            alert("Login successful!");
 
-            // Save the username in localStorage
-            localStorage.setItem("userName", data.userName);
+            // Store user data
+            if (keepLoggedIn) {
+                localStorage.setItem("username", data.userName); // Persistently store username
+            } else {
+                sessionStorage.setItem("username", data.userName); // Session-only storage
+            }
 
-            // Redirect to the dashboard
+            // Redirect to dashboard
             window.location.href = "dashboard.html";
         } else {
-            alert("Invalid credentials. Please try again.");
+            const errorMessage = await response.text();
+            alert("Login failed: " + errorMessage);
         }
     } catch (error) {
-        console.error("Error:", error);
-        alert("Error logging in. Please try again.");
+        console.error("Error during login:", error);
+        alert("An error occurred. Please try again.");
     }
 });
+
 
 
 

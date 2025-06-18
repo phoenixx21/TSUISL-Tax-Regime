@@ -303,15 +303,15 @@
     
     document.addEventListener("DOMContentLoaded", () => {
     // Check for stored username
-    const username = localStorage.getItem("username") || sessionStorage.getItem("username");
+    const userName = localStorage.getItem("userName");
 
-    if (!username) {
+    if (!userName) {
         // If no user is logged in, redirect to the login page
         alert("Please log in to access the dashboard.");
         window.location.href = "index.html";
     } else {
         // Display the username on the dashboard
-        document.getElementById("userName").textContent = username;
+        document.getElementById("userName").textContent = userName;
     }
 });
 
@@ -358,23 +358,25 @@
       window.open(fileName, '_blank');
     }
 
-    document.getElementById('taxForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Form submitted!');
-    });
-
     const loggedInUser = localStorage.getItem("loggedInUsername") || "User";
-    document.getElementById("username").textContent = loggedInUser;
+    document.getElementById("userName").textContent = loggedInUser;
 
-    document.getElementById("submitBtn").addEventListener("click", async (event) => {
-    event.preventDefault();
+    document.getElementById('taxForm').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Prevent the default form submission behavior
 
-    const userId = localStorage.getItem("username"); // Retrieve logged-in user's ID
+    const userId = localStorage.getItem("userName"); // Retrieve the logged-in user's ID
     const pno = document.getElementById("pno").value;
     const name = document.getElementById("name").value;
     const level = document.getElementById("level").value;
 
+    // Ensure required fields are filled
+    if (!pno || !name || !level) {
+        alert("All fields are required!");
+        return;
+    }
+
     try {
+        // Send data to the backend
         const response = await fetch("http://localhost:3000/save-user-data", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -382,18 +384,17 @@
         });
 
         if (response.ok) {
-            alert("Data saved successfully!");
+            alert("Form submitted successfully!");
             window.location.href = "my_tax_regime.html"; // Redirect to My Tax Regime page
         } else {
             const errorMessage = await response.text();
-            alert("Error saving data: " + errorMessage);
+            alert("Error: " + errorMessage);
         }
     } catch (error) {
-        console.error("Error:", error);
+        console.error("Error during submission:", error);
         alert("An error occurred. Please try again.");
     }
 });
-
 
   </script>
 

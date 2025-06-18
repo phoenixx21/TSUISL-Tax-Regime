@@ -39,11 +39,8 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
             alert("Login successful!");
 
             // Store user data
-            if (keepLoggedIn) {
-                localStorage.setItem("username", data.userName); // Persistently store username
-            } else {
-                sessionStorage.setItem("username", data.userName); // Session-only storage
-            }
+            
+                localStorage.setItem("userName", data.userName); // Persistently store username            
 
             // Redirect to dashboard
             window.location.href = "dashboard.html";

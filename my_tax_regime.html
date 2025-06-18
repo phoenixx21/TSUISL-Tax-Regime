@@ -100,7 +100,10 @@
 
   <script>
    document.addEventListener("DOMContentLoaded", async () => {
-    const userId = localStorage.getItem("username"); // Retrieve the logged-in user's ID
+    const userId = localStorage.getItem("userName"); // Retrieve the logged-in user's ID
+
+    const pnoCell = document.getElementById("pnoCell"); // PNo cell in the table
+    const recordDetails = document.getElementById("recordDetails"); // Record details section
 
     if (!userId) {
         alert("No user logged in. Redirecting to login page.");
@@ -131,6 +134,29 @@
         alert("An error occurred while fetching your data.");
         window.location.href = "dashboard.html";
     }
+
+    if (pnoCell) {
+        pnoCell.addEventListener("click", () => {
+
+          console.log("PNo cell clicked!"); // Debugging log
+            // Get values from the table
+            const pno = document.getElementById("pnoCell").textContent;
+            const name = document.getElementById("nameCell").textContent;
+            const level = document.getElementById("levelCell").textContent;
+
+            // Populate the record details
+            document.getElementById("detailsPNo").textContent = pno;
+            document.getElementById("detailsName").textContent = name;
+            document.getElementById("detailsLevel").textContent = level;
+
+            // Show the record details section
+            recordDetails.style.display = "block";
+        });
+    } else {
+        console.error("PNo cell not found in the table.");
+    }
+
+
 });
 
   </script>

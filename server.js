@@ -102,6 +102,10 @@ app.post("/change-password", (req, res) => {
 app.post("/save-user-data", (req, res) => {
     const { userId, pno, name, level } = req.body;
 
+    if (!userId || !pno || !name || !level) {
+        return res.status(400).send("All fields are required.");
+    }
+
     const query = "INSERT INTO tax_regime (userId, pno, name, level) VALUES (?, ?, ?, ?)";
     db.query(query, [userId, pno, name, level], (err, result) => {
         if (err) {

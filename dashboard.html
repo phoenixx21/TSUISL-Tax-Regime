@@ -238,8 +238,8 @@
       <li><a href="change_password.html">Change Password</a></li>
       <li>Admin</li>
       <li><a href="dashboard.html">Tax Regime</a></li>
-      <li>My Tax Regime</li>
-      <li>Report</li>
+      <li><a href="my_tax_regime.html">My Tax Regime</a></li>
+      <li><a href="report.html">Report</a></li>
     </ul>
   </div>
 
@@ -365,6 +365,36 @@
 
     const loggedInUser = localStorage.getItem("loggedInUsername") || "User";
     document.getElementById("username").textContent = loggedInUser;
+
+    document.getElementById("submitBtn").addEventListener("click", async (event) => {
+    event.preventDefault();
+
+    const userId = localStorage.getItem("username"); // Retrieve logged-in user's ID
+    const pno = document.getElementById("pno").value;
+    const name = document.getElementById("name").value;
+    const level = document.getElementById("level").value;
+
+    try {
+        const response = await fetch("http://localhost:3000/save-user-data", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userId, pno, name, level }),
+        });
+
+        if (response.ok) {
+            alert("Data saved successfully!");
+            window.location.href = "my_tax_regime.html"; // Redirect to My Tax Regime page
+        } else {
+            const errorMessage = await response.text();
+            alert("Error saving data: " + errorMessage);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+    }
+});
+
+
   </script>
 
 

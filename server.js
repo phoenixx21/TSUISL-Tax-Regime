@@ -96,6 +96,43 @@ app.post("/change-password", (req, res) => {
   });
 });
 
+//My Tax Regime
+//Save User Data
+
+app.post("/save-user-data", (req, res) => {
+    const { userId, pno, name, level } = req.body;
+
+    const query = "INSERT INTO tax_regime (userId, pno, name, level) VALUES (?, ?, ?, ?)";
+    db.query(query, [userId, pno, name, level], (err, result) => {
+        if (err) {
+            console.error("Error saving data:", err.message);
+            return res.status(500).send("Error saving data.");
+        }
+        res.status(200).send("Data saved successfully.");
+    });
+});
+
+//Get User Data
+
+app.post("/get-user-data", (req, res) => {
+    const { userId } = req.body;
+
+    const query = "SELECT pno, name, level FROM tax_regime WHERE userId = ?";
+    db.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error("Error fetching data:", err.message);
+            return res.status(500).send("Error fetching data.");
+        }
+
+        if (results.length > 0) {
+            res.status(200).json(results[0]);
+        } else {
+            res.status(404).send("No data found.");
+        }
+    });
+});
+
+
 
 
 // Start server

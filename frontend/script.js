@@ -28,7 +28,7 @@ document.getElementById("loginForm").addEventListener("submit", async (event) =>
     const keepLoggedIn = document.getElementById("keepLoggedIn").checked;
 
     try {
-        const response = await fetch("http://localhost:3000/login", {
+        const response = await fetch("https://tsuisl-tax-regime.onrender.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ userId, password }),
@@ -70,7 +70,7 @@ signupForm.addEventListener("submit", async (event) => {
 
 
     try {
-        const response = await fetch("http://localhost:3000/signup", {
+        const response = await fetch("https://tsuisl-tax-regime.onrender.com/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ userId, userName, email, contactNo, password }),

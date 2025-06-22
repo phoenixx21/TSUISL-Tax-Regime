@@ -6,6 +6,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+const corsOptions = {
+    origin: "https://tsuisl-tax-regime.netlify.app",
+};
+app.use(cors(corsOptions));
+
+
 // Connect to MySQL
 require('dotenv').config();
 const mysql = require('mysql2');

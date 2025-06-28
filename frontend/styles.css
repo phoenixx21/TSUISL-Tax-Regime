@@ -91,11 +91,11 @@ button:hover {
 }
 
 .keep-logged-in {
-      display: flex;
-      align-items: flex-start; /* Align checkbox and label vertically */
-      gap: 5px; /* Optional: Add spacing between the checkbox and label */
-  }
+    display: inline;
+    align-items: center; /* Align checkbox and label on the same line */
+    gap: 5px; /* Add spacing between the checkbox and label */
+}
 
-  .keep-logged-in input[type="checkbox"] {
-      margin: 0; /* Remove default margin */
-  }
+.keep-logged-in input[type="checkbox"] {
+    margin: 0; /* Remove any default margin */
+}
